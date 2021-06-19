@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "esquery/ruby"
+require "esquery"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
