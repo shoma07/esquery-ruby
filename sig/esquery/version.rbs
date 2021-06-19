@@ -1,0 +1,3 @@
+module Esquery
+  VERSION: String
+end
