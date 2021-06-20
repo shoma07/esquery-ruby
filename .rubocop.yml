@@ -10,3 +10,9 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
     - spec/factories/**/*.rb
+RSpec/ImplicitSubject:
+  Exclude:
+    - spec/factories/**/*.rb
+RSpec/ImplicitExpect:
+  Exclude:
+    - spec/factories/**/*.rb
