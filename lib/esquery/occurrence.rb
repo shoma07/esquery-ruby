@@ -43,15 +43,15 @@ module Esquery
       build(BoolQuery.new.block_call(&block))
     end
 
-    def nested(path)
-      self.class.new(type, query, nested_path: path)
+    def nested(path, &block)
+      self.class.new(type, query, nested_path: path).bool(&block)
     end
 
     def block_call(&block)
       return self if block.nil?
-      return instance_exec(&block) if chain
+      return instance_exec(&block).query if chain
 
-      self.class.new(type, query, nested_path: nested_path, chain: true).block_call(&block).query
+      self.class.new(type, query, nested_path: nested_path, chain: true).block_call(&block)
     end
 
     private

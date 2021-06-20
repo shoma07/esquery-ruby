@@ -45,6 +45,10 @@ module Esquery
       block.nil? ? self : instance_exec(&block)
     end
 
+    def query
+      self
+    end
+
     def to_h
       {
         bool: {
