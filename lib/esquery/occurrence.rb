@@ -6,10 +6,13 @@ module Esquery
     TYPES = %i[must must_not should filter].freeze
     private_constant :TYPES
 
-    def initialize(type, query = BoolQuery.new, nested_path = nil)
+    attr_reader :query
+
+    def initialize(type, query = BoolQuery.new, nested_path: nil, chain: false)
       @type = TYPES.include?(type) ? type : (raise ArgumentError, type)
       @query = query
       @nested_path = nested_path
+      @chain = chain
     end
 
     def term(field, value)
@@ -41,23 +44,27 @@ module Esquery
     end
 
     def nested(path)
-      self.class.new(type, query, path)
+      self.class.new(type, query, nested_path: path)
     end
 
     def block_call(&block)
-      block.nil? ? self : instance_exec(&block)
+      return self if block.nil?
+      return instance_exec(&block) if chain
+
+      self.class.new(type, query, nested_path: nested_path, chain: true).block_call(&block).query
     end
 
     private
 
-    attr_reader :query, :type, :nested_path
+    attr_reader :type, :nested_path, :chain
 
     def build(add_query)
-      query + BoolQuery.new(
+      bool_query = query + BoolQuery.new(
         type => [
           nested_path.nil? ? add_query : Nested.new(nested_path, add_query)
         ]
       )
+      chain ? Occurrence.new(type, bool_query, nested_path: nested_path, chain: chain) : bool_query
     end
   end
 end
