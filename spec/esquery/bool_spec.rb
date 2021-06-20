@@ -113,4 +113,47 @@ RSpec.describe Esquery::Bool do
 
     it { is_expected.to eq hash }
   end
+
+  describe 'self.build' do
+    subject(:builded) { described_class.build(attributes, &block) }
+
+    let(:attributes) { {} }
+    let(:block) { nil }
+
+    context 'when no argument' do
+      it { is_expected.to be_instance_of(described_class) }
+    end
+
+    context 'when exists attributes of string key' do
+      let(:attributes) { { 'filter' => [build(:term)] } }
+
+      it { is_expected.to be_instance_of(described_class) }
+
+      it 'match hash' do
+        expect(builded.to_h).to eq({ bool: { filter: [{ term: { field_name: 'match_value' } }] } })
+      end
+    end
+
+    context 'when exists attributes of symbol key' do
+      let(:attributes) { { filter: [build(:term)] } }
+
+      it { is_expected.to be_instance_of(described_class) }
+
+      it 'match hash' do
+        expect(builded.to_h).to eq({ bool: { filter: [{ term: { field_name: 'match_value' } }] } })
+      end
+    end
+
+    context 'when exists block' do
+      let(:block) do
+        proc { filter.term(:field_name, 'value') }
+      end
+
+      it { is_expected.to be_instance_of(described_class) }
+
+      it 'match hash' do
+        expect(builded.to_h).to eq({ bool: { filter: [{ term: { field_name: 'value' } }] } })
+      end
+    end
+  end
 end

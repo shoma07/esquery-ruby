@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
-require 'esquery'
 require 'factory_bot'
+require 'simplecov'
+
+SimpleCov.start do
+  enable_coverage :branch
+  add_filter '/spec/'
+end
+SimpleCov.minimum_coverage 100
+
+require 'esquery'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
