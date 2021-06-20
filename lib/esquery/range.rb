@@ -15,18 +15,22 @@ module Esquery
     end
     # rubocop:enable Metrics/ParameterLists, Naming/MethodParameterName
 
+    # rubocop:todo Metrics/MethodLength
     def to_h
       {
         range: {
-          gt: gt,
-          gte: gte,
-          lt: lt,
-          lte: lte,
-          relation: relation,
-          time_zone: time_zone
-        }.compact
+          field => {
+            gt: gt,
+            gte: gte,
+            lt: lt,
+            lte: lte,
+            relation: relation,
+            time_zone: time_zone
+          }.compact
+        }
       }
     end
+    # rubocop:enable Metrics/MethodLength
 
     private
 

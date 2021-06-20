@@ -6,7 +6,7 @@ module Esquery
     TYPES = %i[must must_not should filter].freeze
     private_constant :TYPES
 
-    def initialize(type, query = BoolQuery.new, nested_path = nil, &block)
+    def initialize(type, query = BoolQuery.new, nested_path = nil)
       @type = TYPES.include?(type) ? type : (raise ArgumentError, type)
       @query = query
       @nested_path = nested_path
