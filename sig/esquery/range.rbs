@@ -1,0 +1,25 @@
+module Esquery
+  class Range
+    def initialize: (
+      Symbol field,
+      ?time_zone: untyped,
+      ?relation: untyped,
+      ?lte: untyped,
+      ?lt: untyped,
+      ?gte: untyped,
+      ?gt: untyped
+    ) -> void
+
+    def to_h: () -> Hash[Symbol, Hash[Symbol, Hash[Symbol, untyped]]]
+
+    private
+
+    attr_reader field: Symbol
+    attr_reader gt: untyped
+    attr_reader gte: untyped
+    attr_reader lt: untyped
+    attr_reader lte: untyped
+    attr_reader relation: untyped
+    attr_reader time_zone: String?
+  end
+end

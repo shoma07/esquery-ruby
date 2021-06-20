@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Esquery
-  # Esquery::Term
+  # Esquery::Terms
   class Terms
     def initialize(field, value)
       @field = field

@@ -1,0 +1,12 @@
+module Esquery
+  class Nested
+    def initialize: (Symbol path, BoolQuery query) -> void
+
+    def to_h: () -> Hash[:nested, { path: Symbol, query: Hash[untyped, untyped] }]
+
+    private
+
+    attr_reader path: Symbol
+    attr_reader query: BoolQuery
+  end
+end

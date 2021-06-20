@@ -8,7 +8,7 @@ module Esquery
 
     attr_reader :query
 
-    def initialize(type, query = BoolQuery.new, nested_path: nil, chain: false)
+    def initialize(type, query, nested_path: nil, chain: false)
       @type = TYPES.include?(type) ? type : (raise ArgumentError, type)
       @query = query
       @nested_path = nested_path

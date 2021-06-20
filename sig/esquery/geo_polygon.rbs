@@ -1,0 +1,14 @@
+module Esquery
+  class GeoPolygon
+    def initialize: (Symbol field, Array[untyped] points) -> void
+
+    def to_h: () -> {
+      geo_polygon: Hash[Symbol, { points: Array[untyped] }]
+    }
+
+    private
+
+    attr_reader field: Symbol
+    attr_reader points: Array[untyped]
+  end
+end

@@ -1,0 +1,27 @@
+module Esquery
+  class Occurrence
+    type occurrence_type = :must | :must_not | :should | :filter
+    type return_build = (Occurrence | BoolQuery)
+    TYPES: Array[Symbol]
+
+    attr_reader query: BoolQuery
+
+    def initialize: (occurrence_type, BoolQuery query, ?nested_path: Symbol, ?chain: bool) -> void
+
+    def term: (Symbol, untyped) -> return_build
+    def terms: (Symbol, Array[untyped]) -> return_build
+    def match: (Symbol, untyped) -> return_build
+    def bool: () { (*untyped) -> BoolQuery } -> return_build
+    def nested: (Symbol path) { (*untyped) -> BoolQuery } -> return_build
+
+    def block_call: () { (*untyped) -> return_build } -> return_build
+
+    private
+
+    attr_reader type: occurrence_type
+    attr_reader nested_path: Symbol | nil
+    attr_reader chain: bool
+
+    def build: (untyped add_query) -> return_build
+  end
+end

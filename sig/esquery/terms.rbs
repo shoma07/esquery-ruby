@@ -1,0 +1,11 @@
+module Esquery
+  class Terms
+    def initialize: (Symbol field, Array[untyped] value) -> void
+    def to_h: () -> Hash[Symbol, Hash[Symbol, Array[untyped]]]
+
+    private
+
+    attr_reader field: Symbol
+    attr_reader value: Array[untyped]
+  end
+end

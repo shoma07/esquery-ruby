@@ -1,0 +1,32 @@
+module Esquery
+  class BoolQuery
+    def self.build: (?Hash[untyped, Array[Hash[untyped, untyped]]] attributes) {
+      (*untyped) -> BoolQuery
+    } -> BoolQuery
+    def initialize: (
+      ?must: Array[untyped],
+      ?must_not: Array[untyped],
+      ?should: Array[untyped],
+      ?filter: Array[untyped]
+    ) -> void
+
+    def query: () -> self
+    def block_call: () { (*untyped) -> BoolQuery } -> BoolQuery
+    def +: (BoolQuery) -> BoolQuery
+    def to_h: () -> { bool: Hash[untyped, Array[Hash[untyped, untyped]]] }
+
+    attr_reader must_queries: Array[untyped]
+    attr_reader must_not_queries: Array[untyped]
+    attr_reader should_queries: Array[untyped]
+    attr_reader filter_queries: Array[untyped]
+
+    private
+
+    def self.fetch_attribute: (Hash[untyped, Array[Hash[untyped, untyped]]] attributes, Symbol key) -> Array[Hash[untyped, untyped]]
+
+    def build_occurrence: ((:must | :must_not | :should | :filter)) {
+      (*untyped) -> (Occurrence | BoolQuery)
+    } -> (Occurrence | BoolQuery)
+    def compact_queries_hash: (Array[untyped]) -> Array[Hash[untyped, untyped]]
+  end
+end

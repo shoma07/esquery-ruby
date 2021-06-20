@@ -1,0 +1,33 @@
+module Esquery
+  class Search
+    def initialize: (
+      ?from: Integer,
+      ?size: Integer,
+      ?sort: Array[untyped],
+      ?query: (Hash[untyped, untyped] | BoolQuery)
+    ) -> void
+
+    def page: (Integer) -> Search
+
+    def update: (
+      ?from: Integer?,
+      ?size: Integer?,
+      ?sort: Array[untyped]?,
+      ?query: (Hash[untyped, untyped] | BoolQuery)?
+    ) -> Search
+
+    def to_h: () -> {
+      from: Integer,
+      size: Integer,
+      sort: Array[untyped],
+      query: Hash[untyped, untyped]
+    }
+
+    private
+
+    attr_reader from: Integer
+    attr_reader size: Integer
+    attr_reader sort: Array[untyped]
+    attr_reader query: (Hash[untyped, untyped] | BoolQuery)
+  end
+end

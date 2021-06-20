@@ -9,7 +9,7 @@ module Esquery
     end
 
     def to_h
-      { term: { field => value } }
+      { term: { field.to_sym => value } }
     end
 
     private
