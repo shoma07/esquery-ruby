@@ -11,7 +11,7 @@ require_relative 'esquery/term'
 require_relative 'esquery/terms'
 require_relative 'esquery/nested'
 require_relative 'esquery/occurrence'
-require_relative 'esquery/bool_query'
+require_relative 'esquery/bool'
 
 module Esquery
   class Error < StandardError; end

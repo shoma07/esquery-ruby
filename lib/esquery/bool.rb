@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Esquery
-  # Esquery::BoolQuery
-  class BoolQuery
+  # Esquery::Bool
+  class Bool
     class << self
       def build(attributes = {}, &block)
         new(
@@ -74,6 +74,8 @@ module Esquery
         }.reject { |_k, v| v.empty? }
       }
     end
+
+    alias add +
 
     protected
 

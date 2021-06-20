@@ -4,7 +4,7 @@ module Esquery
       ?from: Integer,
       ?size: Integer,
       ?sort: Array[untyped],
-      ?query: (Hash[untyped, untyped] | BoolQuery)
+      ?query: (Hash[untyped, untyped] | Bool)
     ) -> void
 
     def page: (Integer) -> Search
@@ -13,7 +13,7 @@ module Esquery
       ?from: Integer?,
       ?size: Integer?,
       ?sort: Array[untyped]?,
-      ?query: (Hash[untyped, untyped] | BoolQuery)?
+      ?query: (Hash[untyped, untyped] | Bool)?
     ) -> Search
 
     def to_h: () -> {
@@ -28,6 +28,6 @@ module Esquery
     attr_reader from: Integer
     attr_reader size: Integer
     attr_reader sort: Array[untyped]
-    attr_reader query: (Hash[untyped, untyped] | BoolQuery)
+    attr_reader query: (Hash[untyped, untyped] | Bool)
   end
 end

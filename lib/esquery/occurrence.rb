@@ -40,7 +40,7 @@ module Esquery
     end
 
     def bool(&block)
-      build(BoolQuery.new.block_call(&block))
+      build(Bool.new.block_call(&block))
     end
 
     def nested(path, &block)
@@ -59,7 +59,7 @@ module Esquery
     attr_reader :type, :nested_path, :chain
 
     def build(add_query)
-      bool_query = query + BoolQuery.new(
+      bool_query = query + Bool.new(
         type => [
           nested_path.nil? ? add_query : Nested.new(nested_path, add_query)
         ]
