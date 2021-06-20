@@ -1,28 +1,34 @@
 # Esquery
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/esquery/ruby`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Elasticsearch query builder for Ruby
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'esquery-ruby'
+gem 'esquery-ruby', git: 'https://github.com/shoma07/esquery-ruby.git'
 ```
 
 And then execute:
 
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install esquery-ruby
+```sh
+$ bundle install
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Standard
+
+```ruby
+Esquery::Search.new(
+  query: Esquery::Bool.build do
+    filter do
+      term(:field_name, 'hello')
+    end
+  end
+)
+```
 
 ## Development
 
