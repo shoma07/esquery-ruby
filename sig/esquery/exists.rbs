@@ -1,14 +1,14 @@
 module Esquery
   class Exists
-    def initialize: (Symbol field) -> void
+    def initialize: (String field) -> void
     def to_h: () -> {
       exists: {
-        field: Symbol
+        field: String
       }
     }
 
     private
 
-    attr_reader field: Symbol
+    attr_reader field: String
   end
 end

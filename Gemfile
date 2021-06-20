@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in esquery-ruby.gemspec
 gemspec
 
+gem 'factory_bot'
 gem 'rake'
 gem 'rspec'
 gem 'rubocop'
